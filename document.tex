@@ -1,0 +1,27 @@
+git参考文档
+
+关联github仓库
+第1步：创建SSH Key。在用户主目录下，看看有没有.ssh目录，
+       如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，如果已经有了，可直接跳到下一步。
+       如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：
+       ssh-keygen -t rsa -C "email@demo.com" email地址	 
+       你需要把邮件地址换成你自己的邮件地址，然后一路回车，使用默认值即可，由于这个Key也不是用于军事目的，所以也无需设置密码。
+       如果一切顺利的话，可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，
+	   这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。	
+第2步：登陆GitHub，打开“Account settings”，“SSH Keys”页面：然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容	   
+
+git init                   把当前目录变成Git可以管理的仓库
+git status                 展示仓库当前的状态
+git diff [HEAD --] demo.txt查看difference，显示格式是Unix通用的diff格式，加上参数对比上一次的
+git add  demo.txt          提交到暂存区
+git commit -m "captions"   提交到分支
+git log [--pretty=oneline] 提交历史记录，加上参数会精简显示
+git reset --hard HEAD^     回退上一个版本,上上版本为HEAD^^，上100个版本，HEAD~100，往前的版本，直接写commit id
+git reflog                 查看命令历史
+git checkout -- demo.txt   丢弃工作区内容
+git reset HEAD demo.txt    丢弃暂存区内容 
+git rm demo.txt            删除版本库中的内容
+git remote add origin https://github.com/ysy-law/git.git  关联github仓库
+git remote rm origin                                      删除origin仓库
+git push [-u] origin master                               推送到远程仓库，第一次推送需要加参数
+git clone https://github.com/ysy-law/git.git              克隆远程仓库，Git支持多种协议，包括https，但通过ssh支持的原生git协议速度最快。
